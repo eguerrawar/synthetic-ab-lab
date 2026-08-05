@@ -1,0 +1,235 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>synthetic-ab-lab report</title></head><body><style>
+:root{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1f1e1c; --muted:#6b6862; --line:#e4e1db;
+  --s1:#4f7cff; --s2:#12a594; --s3:#e5484d; --s4:#8e8b85; --pass:#12a594; --fail:#e5484d;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#141413; --panel:#1c1c1a; --ink:#eeece7; --muted:#9a968e; --line:#2e2d2a;
+         --s1:#7aa0ff; --s2:#2ec4b0; --s3:#ff6b6f; --s4:#8e8b85; }
+}
+:root[data-theme=dark]{
+  --bg:#141413; --panel:#1c1c1a; --ink:#eeece7; --muted:#9a968e; --line:#2e2d2a;
+  --s1:#7aa0ff; --s2:#2ec4b0; --s3:#ff6b6f; --s4:#8e8b85;
+}
+:root[data-theme=light]{
+  --bg:#fbfbfa; --panel:#fff; --ink:#1f1e1c; --muted:#6b6862; --line:#e4e1db;
+  --s1:#4f7cff; --s2:#12a594; --s3:#e5484d; --s4:#8e8b85;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;}
+.wrap{max-width:860px;margin:0 auto;padding:48px 20px 80px}
+header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:8px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:14px;margin:0}
+.summary{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 8px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  padding:8px 12px;font-size:13px}
+.chip b{font-variant-numeric:tabular-nums}
+section{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:22px 24px;margin:22px 0}
+h2{font-size:17px;margin:0 0 2px;letter-spacing:-.01em}
+.slug{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;
+  margin:0 0 14px}
+.verdict{float:right;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px}
+.PASS{background:color-mix(in srgb,var(--pass) 16%,transparent);color:var(--pass)}
+.FAIL{background:color-mix(in srgb,var(--fail) 16%,transparent);color:var(--fail)}
+.take{border-left:3px solid var(--s1);padding:2px 0 2px 14px;margin:18px 0 0;
+  color:var(--ink);font-size:14.5px}
+figure{margin:16px 0 0}
+svg{width:100%;height:auto;display:block}
+figcaption{color:var(--muted);font-size:12.5px;margin-top:8px}
+.axis{stroke:var(--muted);stroke-width:1;opacity:.55}
+.grid{stroke:var(--line);stroke-width:1}
+.rule{stroke:var(--s4);stroke-width:1;stroke-dasharray:4 4;opacity:.8}
+.rulelabel{fill:var(--muted);font-size:10px}
+.tick{fill:var(--muted);font-size:10.5px;font-variant-numeric:tabular-nums}
+.legend{fill:var(--muted);font-size:11px}
+.barval{fill:var(--muted);font-size:10px;font-variant-numeric:tabular-nums}
+.line{fill:none;stroke-width:2.25;stroke-linejoin:round;stroke-linecap:round}
+.dot{stroke:none}
+.s1.line{stroke:var(--s1)} .s1.dot,.s1.bar,.s1.swatch{fill:var(--s1)}
+.s2.line{stroke:var(--s2)} .s2.dot,.s2.bar,.s2.swatch{fill:var(--s2)}
+.s3.line{stroke:var(--s3)} .s3.dot,.s3.bar,.s3.swatch{fill:var(--s3)}
+/* Reference series: thin and widely dashed so the measured series it sits on
+   top of stays visible through the gaps. When observed matches theory the two
+   overlap exactly, and both still need to read. */
+.s4.line{stroke:var(--s4);stroke-width:1.4;stroke-dasharray:3 6}
+.s4.dot{fill:none} .s4.bar,.s4.swatch{fill:var(--s4)}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:14px;
+  overflow-x:auto;font:12px/1.55 ui-monospace,"Cascadia Code",Consolas,monospace;
+  margin:16px 0 0}
+footer{color:var(--muted);font-size:12.5px;margin-top:40px;text-align:center}
+</style><div class="wrap"><header><h1>synthetic-ab-lab</h1><p class="sub">Simulation harness for A/B test methodology. Every scenario plants a known ground truth, runs an analysis against it, and states a pass criterion up front.</p></header><div class="summary"><div class="chip"><b>7/7</b> scenarios passed</div><div class="chip"><b>37.4s</b> total runtime</div><div class="chip"><b>0</b> dependencies</div><div class="chip">generated 2026-08-04 11:30</div></div><section><span class="verdict PASS">PASS</span><h2>A/A calibration -- is the harness itself trustworthy?</h2><p class="slug">scenario: aa</p><figure><svg viewBox="0 0 720 300" role="img" preserveAspectRatio="xMidYMid meet"><line class="axis" x1="62" y1="24" x2="62" y2="254"/><line class="axis" x1="62" y1="254" x2="700" y2="254"/><line class="grid" x1="62" y1="254.0" x2="700" y2="254.0"/><text class="tick" x="54" y="258.0" text-anchor="end">0.0%</text><line class="grid" x1="62" y1="196.5" x2="700" y2="196.5"/><text class="tick" x="54" y="200.5" text-anchor="end">1.5%</text><line class="grid" x1="62" y1="139.0" x2="700" y2="139.0"/><text class="tick" x="54" y="143.0" text-anchor="end">3.1%</text><line class="grid" x1="62" y1="81.5" x2="700" y2="81.5"/><text class="tick" x="54" y="85.5" text-anchor="end">4.6%</text><line class="grid" x1="62" y1="24.0" x2="700" y2="24.0"/><text class="tick" x="54" y="28.0" text-anchor="end">6.1%</text><text class="tick" x="62.0" y="272" text-anchor="middle">0.00</text><text class="tick" x="95.6" y="272" text-anchor="middle"></text><text class="tick" x="129.2" y="272" text-anchor="middle"></text><text class="tick" x="162.7" y="272" text-anchor="middle"></text><text class="tick" x="196.3" y="272" text-anchor="middle">0.20</text><text class="tick" x="229.9" y="272" text-anchor="middle"></text><text class="tick" x="263.5" y="272" text-anchor="middle"></text><text class="tick" x="297.1" y="272" text-anchor="middle"></text><text class="tick" x="330.6" y="272" text-anchor="middle">0.40</text><text class="tick" x="364.2" y="272" text-anchor="middle"></text><text class="tick" x="397.8" y="272" text-anchor="middle"></text><text class="tick" x="431.4" y="272" text-anchor="middle"></text><text class="tick" x="464.9" y="272" text-anchor="middle">0.60</text><text class="tick" x="498.5" y="272" text-anchor="middle"></text><text class="tick" x="532.1" y="272" text-anchor="middle"></text><text class="tick" x="565.7" y="272" text-anchor="middle"></text><text class="tick" x="599.3" y="272" text-anchor="middle">0.80</text><text class="tick" x="632.8" y="272" text-anchor="middle"></text><text class="tick" x="666.4" y="272" text-anchor="middle"></text><text class="tick" x="700.0" y="272" text-anchor="middle"></text><rect class="s3 bar" x="68.1" y="71.0" width="19.8" height="183.0" rx="2"/><text class="barval" x="78.0" y="65.0" text-anchor="middle">4.9%</text><rect class="s1 bar" x="100.0" y="61.9" width="19.8" height="192.1" rx="2"/><text class="barval" x="109.8" y="55.9" text-anchor="middle">5.1%</text><rect class="s1 bar" x="131.9" y="64.5" width="19.8" height="189.5" rx="2"/><text class="barval" x="141.8" y="58.5" text-anchor="middle">5.1%</text><rect class="s1 bar" x="163.8" y="54.0" width="19.8" height="200.0" rx="2"/><text class="barval" x="173.7" y="48.0" text-anchor="middle">5.3%</text><rect class="s1 bar" x="195.7" y="67.7" width="19.8" height="186.3" rx="2"/><text class="barval" x="205.6" y="61.7" text-anchor="middle">5.0%</text><rect class="s1 bar" x="227.6" y="63.9" width="19.8" height="190.1" rx="2"/><text class="barval" x="237.4" y="57.9" text-anchor="middle">5.1%</text><rect class="s1 bar" x="259.5" y="76.3" width="19.8" height="177.7" rx="2"/><text class="barval" x="269.4" y="70.3" text-anchor="middle">4.7%</text><rect class="s1 bar" x="291.4" y="68.0" width="19.8" height="186.0" rx="2"/><text class="barval" x="301.2" y="62.0" text-anchor="middle">5.0%</text><rect class="s1 bar" x="323.3" y="74.2" width="19.8" height="179.8" rx="2"/><text class="barval" x="333.1" y="68.2" text-anchor="middle">4.8%</text><rect class="s1 bar" x="355.2" y="57.7" width="19.8" height="196.3" rx="2"/><text class="barval" x="365.1" y="51.7" text-anchor="middle">5.2%</text><rect class="s1 bar" x="387.1" y="65.8" width="19.8" height="188.2" rx="2"/><text class="barval" x="396.9" y="59.8" text-anchor="middle">5.0%</text><rect class="s1 bar" x="419.0" y="55.1" width="19.8" height="198.9" rx="2"/><text class="barval" x="428.9" y="49.1" text-anchor="middle">5.3%</text><rect class="s1 bar" x="450.9" y="79.8" width="19.8" height="174.2" rx="2"/><text class="barval" x="460.8" y="73.8" text-anchor="middle">4.7%</text><rect class="s1 bar" x="482.8" y="57.6" width="19.8" height="196.4" rx="2"/><text class="barval" x="492.6" y="51.6" text-anchor="middle">5.2%</text><rect class="s1 bar" x="514.7" y="60.9" width="19.8" height="193.1" rx="2"/><text class="barval" x="524.5" y="54.9" text-anchor="middle">5.2%</text><rect class="s1 bar" x="546.6" y="67.5" width="19.8" height="186.5" rx="2"/><text class="barval" x="556.5" y="61.5" text-anchor="middle">5.0%</text><rect class="s1 bar" x="578.5" y="64.9" width="19.8" height="189.1" rx="2"/><text class="barval" x="588.4" y="58.9" text-anchor="middle">5.1%</text><rect class="s1 bar" x="610.4" y="65.8" width="19.8" height="188.2" rx="2"/><text class="barval" x="620.2" y="59.8" text-anchor="middle">5.0%</text><rect class="s1 bar" x="642.3" y="65.2" width="19.8" height="188.8" rx="2"/><text class="barval" x="652.1" y="59.2" text-anchor="middle">5.0%</text><rect class="s1 bar" x="674.2" y="92.8" width="19.8" height="161.2" rx="2"/><text class="barval" x="684.0" y="86.8" text-anchor="middle">4.3%</text><line class="axis" x1="62" y1="254" x2="700" y2="254"/></svg><figcaption>p-value distribution across A/A tests with zero true effect. Flat is correct; the highlighted first bar is the 5% that cross significance.</figcaption></figure><p class="take">20,000 A/A tests with zero true effect produced a 4.88% false positive rate against a nominal 5%. p-values are uniform, so the harness is calibrated and every downstream result can be believed.</p><pre>  trials                20,000 A/A experiments @ 25,000 users/arm
+  true effect           0.00% (identical arms by construction)
+  false positive rate   4.88%  (nominal 5%, z = -0.75)
+  p-value uniformity    KS = 0.0077  (critical 0.0096)
+
+  p-value histogram (flat == correctly calibrated)
+    0.00-0.05 |################################## 977
+    0.05-0.10 |#################################### 1026
+    0.10-0.15 |#################################### 1012
+    0.15-0.20 |###################################### 1068
+    0.20-0.25 |################################### 995
+    0.25-0.30 |#################################### 1015
+    0.30-0.35 |################################# 949
+    0.35-0.40 |################################### 993
+    0.40-0.45 |################################## 960
+    0.45-0.50 |##################################### 1048
+    0.50-0.55 |################################### 1005
+    0.55-0.60 |##################################### 1062
+    0.60-0.65 |################################# 930
+    0.65-0.70 |##################################### 1049
+    0.70-0.75 |#################################### 1031
+    0.75-0.80 |################################### 996
+    0.80-0.85 |################################### 1010
+    0.85-0.90 |################################### 1005
+    0.90-0.95 |################################### 1008
+    0.95-1.00 |############################## 861</pre></section><section><span class="verdict PASS">PASS</span><h2>Power validation -- analytic sample size vs. simulated reality</h2><p class="slug">scenario: power</p><figure><svg viewBox="0 0 720 300" role="img" preserveAspectRatio="xMidYMid meet"><line class="axis" x1="62" y1="24" x2="62" y2="254"/><line class="axis" x1="62" y1="254" x2="700" y2="254"/><line class="grid" x1="62" y1="254.0" x2="700" y2="254.0"/><text class="tick" x="54" y="258.0" text-anchor="end">0%</text><line class="grid" x1="62" y1="196.5" x2="700" y2="196.5"/><text class="tick" x="54" y="200.5" text-anchor="end">25%</text><line class="grid" x1="62" y1="139.0" x2="700" y2="139.0"/><text class="tick" x="54" y="143.0" text-anchor="end">50%</text><line class="grid" x1="62" y1="81.5" x2="700" y2="81.5"/><text class="tick" x="54" y="85.5" text-anchor="end">75%</text><line class="grid" x1="62" y1="24.0" x2="700" y2="24.0"/><text class="tick" x="54" y="28.0" text-anchor="end">100%</text><text class="tick" x="62.0" y="272" text-anchor="middle">+0%</text><text class="tick" x="153.1" y="272" text-anchor="middle">+1%</text><text class="tick" x="244.3" y="272" text-anchor="middle">+2%</text><text class="tick" x="335.4" y="272" text-anchor="middle">+3%</text><text class="tick" x="426.6" y="272" text-anchor="middle">+4%</text><text class="tick" x="517.7" y="272" text-anchor="middle">+5%</text><text class="tick" x="608.9" y="272" text-anchor="middle">+7%</text><text class="tick" x="700.0" y="272" text-anchor="middle">+10%</text><line class="rule" x1="62" y1="70.0" x2="700" y2="70.0"/><text class="rulelabel" x="696" y="64.0" text-anchor="end">80% target</text><polyline class="s1 line" points="62.0,242.5 153.1,233.9 244.3,207.1 335.4,163.6 426.6,113.1 517.7,70.0 608.9,30.0 700.0,24.0"/><circle class="s1 dot" cx="62.0" cy="242.5" r="3"/><circle class="s1 dot" cx="153.1" cy="233.9" r="3"/><circle class="s1 dot" cx="244.3" cy="207.1" r="3"/><circle class="s1 dot" cx="335.4" cy="163.6" r="3"/><circle class="s1 dot" cx="426.6" cy="113.1" r="3"/><circle class="s1 dot" cx="517.7" cy="70.0" r="3"/><circle class="s1 dot" cx="608.9" cy="30.0" r="3"/><circle class="s1 dot" cx="700.0" cy="24.0" r="3"/><polyline class="s2 line" points="62.0,243.3 153.1,233.6 244.3,207.5 335.4,163.0 426.6,111.7 517.7,69.8 608.9,30.0 700.0,24.0"/><circle class="s2 dot" cx="62.0" cy="243.3" r="3"/><circle class="s2 dot" cx="153.1" cy="233.6" r="3"/><circle class="s2 dot" cx="244.3" cy="207.5" r="3"/><circle class="s2 dot" cx="335.4" cy="163.0" r="3"/><circle class="s2 dot" cx="426.6" cy="111.7" r="3"/><circle class="s2 dot" cx="517.7" cy="69.8" r="3"/><circle class="s2 dot" cx="608.9" cy="30.0" r="3"/><circle class="s2 dot" cx="700.0" cy="24.0" r="3"/><rect class="s1 swatch" x="62" y="6" width="14" height="4" rx="2"/><text class="legend" x="82" y="11">analytic power</text><rect class="s2 swatch" x="282" y="6" width="14" height="4" rx="2"/><text class="legend" x="302" y="11">simulated power</text></svg><figcaption>Simulated rejection rate against the analytic power curve at the designed sample size.</figcaption></figure><p class="take">Sized for a +5% lift, the design needs 138,242 users. Simulated power tracks the analytic curve to within 0.6% everywhere, so the planning numbers are safe to quote.</p><pre>  design            baseline 8.50%, MDE +5%, power 80%
+  required n        69,121 per arm (138,242 total)
+  replications      6,000 per grid point
+
+  true lift    simulated power    analytic power    gap
+     +0.0%          4.7%              5.0%      0.003
+     +1.0%          8.9%              8.7%      0.001
+     +2.0%         20.2%             20.4%      0.002
+     +3.0%         39.6%             39.3%      0.003
+     +4.0%         61.9%             61.3%      0.006
+     +5.0%         80.1%             80.0%      0.001
+     +7.0%         97.4%             97.4%      0.000
+    +10.0%        100.0%            100.0%      0.000
+
+  worst gap 0.006 vs tolerance 0.029
+
+  planning table -- smallest lift visible at each traffic level
+      5,000 users/arm  -&gt;  MDE +19.16% (1.628 pp)
+     10,000 users/arm  -&gt;  MDE +13.38% (1.138 pp)
+     25,000 users/arm  -&gt;  MDE +8.38% (0.712 pp)
+     50,000 users/arm  -&gt;  MDE +5.89% (0.501 pp)
+    100,000 users/arm  -&gt;  MDE +4.15% (0.353 pp)
+    250,000 users/arm  -&gt;  MDE +2.62% (0.222 pp)
+    500,000 users/arm  -&gt;  MDE +1.85% (0.157 pp)</pre></section><section><span class="verdict PASS">PASS</span><h2>Peeking -- how daily dashboard checks manufacture false positives</h2><p class="slug">scenario: peeking</p><figure><svg viewBox="0 0 720 300" role="img" preserveAspectRatio="xMidYMid meet"><line class="axis" x1="62" y1="24" x2="62" y2="254"/><line class="axis" x1="62" y1="254" x2="700" y2="254"/><line class="grid" x1="62" y1="254.0" x2="700" y2="254.0"/><text class="tick" x="54" y="258.0" text-anchor="end">0%</text><line class="grid" x1="62" y1="196.5" x2="700" y2="196.5"/><text class="tick" x="54" y="200.5" text-anchor="end">6%</text><line class="grid" x1="62" y1="139.0" x2="700" y2="139.0"/><text class="tick" x="54" y="143.0" text-anchor="end">12%</text><line class="grid" x1="62" y1="81.5" x2="700" y2="81.5"/><text class="tick" x="54" y="85.5" text-anchor="end">18%</text><line class="grid" x1="62" y1="24.0" x2="700" y2="24.0"/><text class="tick" x="54" y="28.0" text-anchor="end">24%</text><text class="tick" x="62.0" y="272" text-anchor="middle">1</text><text class="tick" x="111.1" y="272" text-anchor="middle">2</text><text class="tick" x="160.2" y="272" text-anchor="middle">3</text><text class="tick" x="209.2" y="272" text-anchor="middle">4</text><text class="tick" x="258.3" y="272" text-anchor="middle">5</text><text class="tick" x="307.4" y="272" text-anchor="middle">6</text><text class="tick" x="356.5" y="272" text-anchor="middle">7</text><text class="tick" x="405.5" y="272" text-anchor="middle">8</text><text class="tick" x="454.6" y="272" text-anchor="middle">9</text><text class="tick" x="503.7" y="272" text-anchor="middle">10</text><text class="tick" x="552.8" y="272" text-anchor="middle">11</text><text class="tick" x="601.8" y="272" text-anchor="middle">12</text><text class="tick" x="650.9" y="272" text-anchor="middle">13</text><text class="tick" x="700.0" y="272" text-anchor="middle">14</text><line class="rule" x1="62" y1="205.8" x2="700" y2="205.8"/><text class="rulelabel" x="696" y="199.8" text-anchor="end">nominal 5%</text><polyline class="s3 line" points="62.0,207.1 111.1,175.0 160.2,152.2 209.2,133.2 258.3,116.2 307.4,102.1 356.5,89.2 405.5,81.5 454.6,74.1 503.7,66.4 552.8,60.0 601.8,52.0 650.9,47.5 700.0,41.0"/><circle class="s3 dot" cx="62.0" cy="207.1" r="3"/><circle class="s3 dot" cx="111.1" cy="175.0" r="3"/><circle class="s3 dot" cx="160.2" cy="152.2" r="3"/><circle class="s3 dot" cx="209.2" cy="133.2" r="3"/><circle class="s3 dot" cx="258.3" cy="116.2" r="3"/><circle class="s3 dot" cx="307.4" cy="102.1" r="3"/><circle class="s3 dot" cx="356.5" cy="89.2" r="3"/><circle class="s3 dot" cx="405.5" cy="81.5" r="3"/><circle class="s3 dot" cx="454.6" cy="74.1" r="3"/><circle class="s3 dot" cx="503.7" cy="66.4" r="3"/><circle class="s3 dot" cx="552.8" cy="60.0" r="3"/><circle class="s3 dot" cx="601.8" cy="52.0" r="3"/><circle class="s3 dot" cx="650.9" cy="47.5" r="3"/><circle class="s3 dot" cx="700.0" cy="41.0" r="3"/><polyline class="s2 line" points="62.0,245.6 111.1,245.6 160.2,245.6 209.2,245.6 258.3,245.6 307.4,245.6 356.5,245.6 405.5,245.6 454.6,245.6 503.7,245.6 552.8,245.6 601.8,245.6 650.9,245.6 700.0,245.6"/><circle class="s2 dot" cx="62.0" cy="245.6" r="3"/><circle class="s2 dot" cx="111.1" cy="245.6" r="3"/><circle class="s2 dot" cx="160.2" cy="245.6" r="3"/><circle class="s2 dot" cx="209.2" cy="245.6" r="3"/><circle class="s2 dot" cx="258.3" cy="245.6" r="3"/><circle class="s2 dot" cx="307.4" cy="245.6" r="3"/><circle class="s2 dot" cx="356.5" cy="245.6" r="3"/><circle class="s2 dot" cx="405.5" cy="245.6" r="3"/><circle class="s2 dot" cx="454.6" cy="245.6" r="3"/><circle class="s2 dot" cx="503.7" cy="245.6" r="3"/><circle class="s2 dot" cx="552.8" cy="245.6" r="3"/><circle class="s2 dot" cx="601.8" cy="245.6" r="3"/><circle class="s2 dot" cx="650.9" cy="245.6" r="3"/><circle class="s2 dot" cx="700.0" cy="245.6" r="3"/><rect class="s3 swatch" x="62" y="6" width="14" height="4" rx="2"/><text class="legend" x="82" y="11">fixed-horizon, peeked daily</text><rect class="s2 swatch" x="282" y="6" width="14" height="4" rx="2"/><text class="legend" x="302" y="11">mSPRT always-valid</text></svg><figcaption>False positive rate as daily looks accumulate. Both arms are identical -- every rejection is an error.</figcaption></figure><p class="take">Checking a fixed-horizon test every day for 14 days turns a 5% false positive rate into 22.1% -- 4.4x inflation, on experiments with zero true effect. The mSPRT held at 0.9% under the exact same stopping rule.</p><pre>  setup                 3,000 A/A experiments, 4,000 users/arm/day, checked daily for 14 days
+  true effect           0.00%  (every rejection below is a false positive)
+
+  fixed-horizon z-test, peeked daily    22.1%   &lt;-- 4.4x the nominal 5%
+  mSPRT always-valid p-value             0.9%   &lt;-- controlled
+
+  false positive rate as looks accumulate
+    day  1 |## 4.9%
+    day  2 |#### 8.2%
+    day  3 |###### 10.6%
+    day  4 |####### 12.5%
+    day  5 |######## 14.3%
+    day  6 |######### 15.8%
+    day  7 |########## 17.1%
+    day  8 |########## 17.9%
+    day  9 |########### 18.7%
+    day 10 |########### 19.5%
+    day 11 |############ 20.1%
+    day 12 |############ 21.0%
+    day 13 |############ 21.4%
+    day 14 |############# 22.1%
+
+  cost of the fix -- against a real +5% lift, same 14-day window:
+    fixed-horizon power (correct use, ONE look at the end)  70.2%
+    mSPRT power (stop ANY time)                             36.9%
+
+  priced properly -- traffic needed to reach 80% power:
+    fixed horizon      69,121 users/arm
+    mSPRT             120,000 users/arm (30 days)
+    the price       1.74x traffic to buy unlimited peeking
+
+  tau sensitivity -- the prior trades POWER, never VALIDITY:
+
+    tau / true effect    false positive rate    power
+             0.25x               0.0%      1.4%
+             0.50x               0.2%     23.9%
+             1.00x               0.9%     37.9%
+             2.00x               1.8%     39.1%
+             4.00x               0.8%     33.8%
+
+    Every row controls false positives. Only the power column moves.</pre></section><section><span class="verdict PASS">PASS</span><h2>Sample Ratio Mismatch -- the gate that runs before any result is read</h2><p class="slug">scenario: srm</p><figure><svg viewBox="0 0 720 300" role="img" preserveAspectRatio="xMidYMid meet"><line class="axis" x1="62" y1="24" x2="62" y2="254"/><line class="axis" x1="62" y1="254" x2="700" y2="254"/><line class="grid" x1="62" y1="254.0" x2="700" y2="254.0"/><text class="tick" x="54" y="258.0" text-anchor="end">0%</text><line class="grid" x1="62" y1="196.5" x2="700" y2="196.5"/><text class="tick" x="54" y="200.5" text-anchor="end">29%</text><line class="grid" x1="62" y1="139.0" x2="700" y2="139.0"/><text class="tick" x="54" y="143.0" text-anchor="end">57%</text><line class="grid" x1="62" y1="81.5" x2="700" y2="81.5"/><text class="tick" x="54" y="85.5" text-anchor="end">86%</text><line class="grid" x1="62" y1="24.0" x2="700" y2="24.0"/><text class="tick" x="54" y="28.0" text-anchor="end">115%</text><text class="tick" x="62.0" y="272" text-anchor="middle">50.00%</text><text class="tick" x="189.6" y="272" text-anchor="middle">50.10%</text><text class="tick" x="317.2" y="272" text-anchor="middle">50.25%</text><text class="tick" x="444.8" y="272" text-anchor="middle">50.50%</text><text class="tick" x="572.4" y="272" text-anchor="middle">51.00%</text><text class="tick" x="700.0" y="272" text-anchor="middle">52.00%</text><rect class="s3 bar" x="82.2" y="254.0" width="65.9" height="0.0" rx="2"/><text class="barval" x="115.2" y="248.0" text-anchor="middle">0%</text><rect class="s2 bar" x="188.5" y="249.0" width="65.9" height="5.0" rx="2"/><text class="barval" x="221.5" y="243.0" text-anchor="middle">2%</text><rect class="s2 bar" x="294.9" y="163.5" width="65.9" height="90.5" rx="2"/><text class="barval" x="327.8" y="157.5" text-anchor="middle">45%</text><rect class="s2 bar" x="401.2" y="54.5" width="65.9" height="199.5" rx="2"/><text class="barval" x="434.2" y="48.5" text-anchor="middle">100%</text><rect class="s2 bar" x="507.5" y="54.0" width="65.9" height="200.0" rx="2"/><text class="barval" x="540.5" y="48.0" text-anchor="middle">100%</text><rect class="s2 bar" x="613.9" y="54.0" width="65.9" height="200.0" rx="2"/><text class="barval" x="646.8" y="48.0" text-anchor="middle">100%</text><line class="axis" x1="62" y1="254" x2="700" y2="254"/></svg><figcaption>Chi-square detection rate against the true assignment split.</figcaption></figure><p class="take">At 400,000 users the chi-square gate catches a 1pp assignment skew 100% of the time while false-alarming on clean splits only 0.0% of the time. When the dropout is correlated with the outcome it fabricates a +2.0% lift out of a true effect of +0.0%.</p><pre>  detector sensitivity at 400,000 users, alpha = 0.001
+
+    true split      caught
+    clean 50.00%  | 0.0%
+         50.100%  | 2.5%
+         50.250%  |############# 45.2%
+         50.500%  |############################# 99.8%
+         51.000%  |############################## 100.0%
+         52.000%  |############################## 100.0%
+
+  what SRM does to a result -- 2% of low-propensity treatment users never log:
+    assigned to treatment    2,000,000
+    observed in treatment    1,962,532  (37,468 silently missing)
+    observed split           50.473% / 49.527%
+    TRUE lift                +0.00%
+    MEASURED lift            +2.00%  (p = 8.94e-08, SIGNIFICANT)
+    SRM gate                 p = 4.95e-79  -&gt; BLOCKED, do not analyze
+
+    The lift is entirely fabricated. Without the gate it ships.</pre></section><section><span class="verdict PASS">PASS</span><h2>Simpson&#x27;s paradox -- treatment wins every segment and loses the average</h2><p class="slug">scenario: heterogeneity</p><figure><svg viewBox="0 0 720 300" role="img" preserveAspectRatio="xMidYMid meet"><line class="axis" x1="62" y1="24" x2="62" y2="254"/><line class="axis" x1="62" y1="254" x2="700" y2="254"/><line class="grid" x1="62" y1="254.0" x2="700" y2="254.0"/><text class="tick" x="54" y="258.0" text-anchor="end">-30%</text><line class="grid" x1="62" y1="196.5" x2="700" y2="196.5"/><text class="tick" x="54" y="200.5" text-anchor="end">-19%</text><line class="grid" x1="62" y1="139.0" x2="700" y2="139.0"/><text class="tick" x="54" y="143.0" text-anchor="end">-8%</text><line class="grid" x1="62" y1="81.5" x2="700" y2="81.5"/><text class="tick" x="54" y="85.5" text-anchor="end">+3%</text><line class="grid" x1="62" y1="24.0" x2="700" y2="24.0"/><text class="tick" x="54" y="28.0" text-anchor="end">+14%</text><text class="tick" x="62.0" y="272" text-anchor="middle">mobile</text><text class="tick" x="274.7" y="272" text-anchor="middle">desktop</text><text class="tick" x="487.3" y="272" text-anchor="middle">POOLED</text><text class="tick" x="700.0" y="272" text-anchor="middle">STRATIFIED</text><line class="axis" x1="62" y1="96.0" x2="700" y2="96.0"/><rect class="s2 bar" x="97.9" y="36.0" width="87.7" height="60.0" rx="2"/><text class="barval" x="141.8" y="30.0" text-anchor="middle">+11.4%</text><rect class="s2 bar" x="257.4" y="50.8" width="87.7" height="45.2" rx="2"/><text class="barval" x="301.2" y="44.8" text-anchor="middle">+8.5%</text><rect class="s3 bar" x="416.9" y="96.0" width="87.7" height="131.6" rx="2"/><text class="barval" x="460.8" y="243.7" text-anchor="middle">-24.9%</text><rect class="s1 bar" x="576.4" y="47.3" width="87.7" height="48.8" rx="2"/><text class="barval" x="620.2" y="41.3" text-anchor="middle">+9.2%</text></svg><figcaption>Measured lift by segment, pooled, and post-stratified. Same data, three answers.</figcaption></figure><p class="take">Treatment lifts every segment by +10%, yet the pooled number reads -24.9% because the arms carry different device mixes. Post-stratifying on the population share recovers +9.2%. Never ship on a pooled average without checking the mix.</p><pre>  design              300,000 users/arm, true effect +10% in EVERY segment
+  the bug             control is 40% mobile, treatment is 70% mobile
+
+    segment     control    treatment    lift        verdict
+    mobile      3.067%     3.416%   +11.35%    WIN (p=6.8e-08)
+    desktop    11.752%    12.757%    +8.55%    WIN (p=4.4e-14)
+
+    POOLED     -24.89%  (p = 5.54e-208)   &lt;-- treatment &#x27;loses&#x27;
+    STRATIFIED  +9.23%  &lt;-- recovers the truth (+10%)
+
+    Every segment improved. The pooled average fell. Both are arithmetic.</pre></section><section><span class="verdict PASS">PASS</span><h2>Novelty decay -- the early read measures a real effect that will not last</h2><p class="slug">scenario: novelty</p><figure><svg viewBox="0 0 720 300" role="img" preserveAspectRatio="xMidYMid meet"><line class="axis" x1="62" y1="24" x2="62" y2="254"/><line class="axis" x1="62" y1="254" x2="700" y2="254"/><line class="grid" x1="62" y1="254.0" x2="700" y2="254.0"/><text class="tick" x="54" y="258.0" text-anchor="end">-1%</text><line class="grid" x1="62" y1="196.5" x2="700" y2="196.5"/><text class="tick" x="54" y="200.5" text-anchor="end">+3%</text><line class="grid" x1="62" y1="139.0" x2="700" y2="139.0"/><text class="tick" x="54" y="143.0" text-anchor="end">+7%</text><line class="grid" x1="62" y1="81.5" x2="700" y2="81.5"/><text class="tick" x="54" y="85.5" text-anchor="end">+11%</text><line class="grid" x1="62" y1="24.0" x2="700" y2="24.0"/><text class="tick" x="54" y="28.0" text-anchor="end">+15%</text><text class="tick" x="62.0" y="272" text-anchor="middle">1</text><text class="tick" x="132.9" y="272" text-anchor="middle">4</text><text class="tick" x="203.8" y="272" text-anchor="middle">7</text><text class="tick" x="274.7" y="272" text-anchor="middle">10</text><text class="tick" x="345.6" y="272" text-anchor="middle">13</text><text class="tick" x="416.4" y="272" text-anchor="middle">16</text><text class="tick" x="487.3" y="272" text-anchor="middle">19</text><text class="tick" x="558.2" y="272" text-anchor="middle">22</text><text class="tick" x="629.1" y="272" text-anchor="middle">25</text><text class="tick" x="700.0" y="272" text-anchor="middle">28</text><line class="rule" x1="62" y1="238.1" x2="700" y2="238.1"/><text class="rulelabel" x="696" y="232.1" text-anchor="end"></text><polyline class="s1 line" points="62.0,69.8 85.6,96.6 109.3,119.1 132.9,138.1 156.5,154.0 180.1,167.4 203.8,178.6 227.4,188.1 251.0,196.1 274.7,202.8 298.3,208.4 321.9,213.1 345.6,217.1 369.2,220.4 392.8,223.3 416.4,225.6 440.1,227.6 463.7,229.3 487.3,230.7 511.0,231.9 534.6,232.9 558.2,233.7 581.9,234.4 605.5,235.0 629.1,235.5 652.7,235.9 676.4,236.3 700.0,236.6"/><circle class="s1 dot" cx="62.0" cy="69.8" r="3"/><circle class="s1 dot" cx="85.6" cy="96.6" r="3"/><circle class="s1 dot" cx="109.3" cy="119.1" r="3"/><circle class="s1 dot" cx="132.9" cy="138.1" r="3"/><circle class="s1 dot" cx="156.5" cy="154.0" r="3"/><circle class="s1 dot" cx="180.1" cy="167.4" r="3"/><circle class="s1 dot" cx="203.8" cy="178.6" r="3"/><circle class="s1 dot" cx="227.4" cy="188.1" r="3"/><circle class="s1 dot" cx="251.0" cy="196.1" r="3"/><circle class="s1 dot" cx="274.7" cy="202.8" r="3"/><circle class="s1 dot" cx="298.3" cy="208.4" r="3"/><circle class="s1 dot" cx="321.9" cy="213.1" r="3"/><circle class="s1 dot" cx="345.6" cy="217.1" r="3"/><circle class="s1 dot" cx="369.2" cy="220.4" r="3"/><circle class="s1 dot" cx="392.8" cy="223.3" r="3"/><circle class="s1 dot" cx="416.4" cy="225.6" r="3"/><circle class="s1 dot" cx="440.1" cy="227.6" r="3"/><circle class="s1 dot" cx="463.7" cy="229.3" r="3"/><circle class="s1 dot" cx="487.3" cy="230.7" r="3"/><circle class="s1 dot" cx="511.0" cy="231.9" r="3"/><circle class="s1 dot" cx="534.6" cy="232.9" r="3"/><circle class="s1 dot" cx="558.2" cy="233.7" r="3"/><circle class="s1 dot" cx="581.9" cy="234.4" r="3"/><circle class="s1 dot" cx="605.5" cy="235.0" r="3"/><circle class="s1 dot" cx="629.1" cy="235.5" r="3"/><circle class="s1 dot" cx="652.7" cy="235.9" r="3"/><circle class="s1 dot" cx="676.4" cy="236.3" r="3"/><circle class="s1 dot" cx="700.0" cy="236.6" r="3"/><polyline class="s3 line" points="62.0,39.9 85.6,62.4 109.3,86.9 132.9,94.1 156.5,103.8 180.1,113.8 203.8,121.7 227.4,133.0 251.0,140.1 274.7,144.9 298.3,150.8 321.9,156.8 345.6,159.9 369.2,163.9 392.8,166.5 416.4,171.0 440.1,176.9 463.7,181.9 487.3,183.4 511.0,187.8 534.6,188.7 558.2,190.0 581.9,190.9 605.5,193.4 629.1,195.9 652.7,198.3 676.4,199.6 700.0,200.9"/><circle class="s3 dot" cx="62.0" cy="39.9" r="3"/><circle class="s3 dot" cx="85.6" cy="62.4" r="3"/><circle class="s3 dot" cx="109.3" cy="86.9" r="3"/><circle class="s3 dot" cx="132.9" cy="94.1" r="3"/><circle class="s3 dot" cx="156.5" cy="103.8" r="3"/><circle class="s3 dot" cx="180.1" cy="113.8" r="3"/><circle class="s3 dot" cx="203.8" cy="121.7" r="3"/><circle class="s3 dot" cx="227.4" cy="133.0" r="3"/><circle class="s3 dot" cx="251.0" cy="140.1" r="3"/><circle class="s3 dot" cx="274.7" cy="144.9" r="3"/><circle class="s3 dot" cx="298.3" cy="150.8" r="3"/><circle class="s3 dot" cx="321.9" cy="156.8" r="3"/><circle class="s3 dot" cx="345.6" cy="159.9" r="3"/><circle class="s3 dot" cx="369.2" cy="163.9" r="3"/><circle class="s3 dot" cx="392.8" cy="166.5" r="3"/><circle class="s3 dot" cx="416.4" cy="171.0" r="3"/><circle class="s3 dot" cx="440.1" cy="176.9" r="3"/><circle class="s3 dot" cx="463.7" cy="181.9" r="3"/><circle class="s3 dot" cx="487.3" cy="183.4" r="3"/><circle class="s3 dot" cx="511.0" cy="187.8" r="3"/><circle class="s3 dot" cx="534.6" cy="188.7" r="3"/><circle class="s3 dot" cx="558.2" cy="190.0" r="3"/><circle class="s3 dot" cx="581.9" cy="190.9" r="3"/><circle class="s3 dot" cx="605.5" cy="193.4" r="3"/><circle class="s3 dot" cx="629.1" cy="195.9" r="3"/><circle class="s3 dot" cx="652.7" cy="198.3" r="3"/><circle class="s3 dot" cx="676.4" cy="199.6" r="3"/><circle class="s3 dot" cx="700.0" cy="200.9" r="3"/><rect class="s1 swatch" x="62" y="6" width="14" height="4" rx="2"/><text class="legend" x="82" y="11">true effect</text><rect class="s3 swatch" x="282" y="6" width="14" height="4" rx="2"/><text class="legend" x="302" y="11">cumulative (dashboard)</text></svg><figcaption>True effect versus what the cumulative dashboard number reports as the novelty wears off.</figcaption></figure><p class="take">A +12% launch-day lift with a 4-day half-life reads +8.0% in week 1 and +2.7% cumulatively, but the durable effect measured in the final week is +0.0% with a CI that covers zero. Ship on the cumulative number and the win evaporates in production a month later, when nobody connects the two events.</p><pre>  design            +12% launch-day effect, 4-day half-life, 28 days
+
+    day   true    daily measured   cumulative (dashboard)
+      1  +12.00%    +14.14%        +14.14% *
+      2  +10.09%    +10.97%        +12.53% *
+      4  +7.14%     +8.71%        +10.27% *
+      6  +5.05%     +5.29%         +8.86% *
+      8  +3.57%     +1.93%         +7.49% *
+     10  +2.52%     +3.58%         +6.65% *
+     12  +1.78%     +1.10%         +5.80% *
+     14  +1.26%     +1.57%         +5.29% *
+     16  +0.89%     +0.03%         +4.79% *
+     18  +0.63%     -2.03%         +4.01% *
+     20  +0.45%     -2.37%         +3.59% *
+     22  +0.32%     +1.42%         +3.43% *
+     24  +0.22%     -0.81%         +3.19% *
+     26  +0.16%     -1.37%         +2.84% *
+     28  +0.11%     +0.19%         +2.66% *
+
+    three readings of the SAME experiment:
+      week 1 only            +7.98%   (true: +7.57%)  &lt;- the excited Slack message
+      cumulative day 1-28    +2.66%                  &lt;- what the dashboard shows
+      final week only        +0.02%   (true: +0.20%)  &lt;- the DURABLE effect
+                             95% CI [-1.19%, +1.23%]
+
+    is &#x27;read the last week&#x27; actually an unbiased rule? (400 replications)
+      mean estimate    +0.220%  vs truth +0.199%  (bias +0.021%)
+      CI coverage      94.8%  (nominal 95%)
+
+    Read the last week, not the average. Require the daily series to be flat.</pre></section><section><span class="verdict PASS">PASS</span><h2>CUPED -- same data, same answer, materially less noise</h2><p class="slug">scenario: cuped</p><figure><svg viewBox="0 0 720 300" role="img" preserveAspectRatio="xMidYMid meet"><line class="axis" x1="62" y1="24" x2="62" y2="254"/><line class="axis" x1="62" y1="254" x2="700" y2="254"/><line class="grid" x1="62" y1="254.0" x2="700" y2="254.0"/><text class="tick" x="54" y="258.0" text-anchor="end">0%</text><line class="grid" x1="62" y1="196.5" x2="700" y2="196.5"/><text class="tick" x="54" y="200.5" text-anchor="end">22%</text><line class="grid" x1="62" y1="139.0" x2="700" y2="139.0"/><text class="tick" x="54" y="143.0" text-anchor="end">44%</text><line class="grid" x1="62" y1="81.5" x2="700" y2="81.5"/><text class="tick" x="54" y="85.5" text-anchor="end">66%</text><line class="grid" x1="62" y1="24.0" x2="700" y2="24.0"/><text class="tick" x="54" y="28.0" text-anchor="end">87%</text><text class="tick" x="62.0" y="272" text-anchor="middle">0.0</text><text class="tick" x="221.5" y="272" text-anchor="middle">0.3</text><text class="tick" x="381.0" y="272" text-anchor="middle">0.5</text><text class="tick" x="540.5" y="272" text-anchor="middle">0.7</text><text class="tick" x="700.0" y="272" text-anchor="middle">0.9</text><polyline class="s1 line" points="62.0,254.0 221.5,230.4 381.0,188.8 540.5,125.2 700.0,41.0"/><circle class="s1 dot" cx="62.0" cy="254.0" r="3"/><circle class="s1 dot" cx="221.5" cy="230.4" r="3"/><circle class="s1 dot" cx="381.0" cy="188.8" r="3"/><circle class="s1 dot" cx="540.5" cy="125.2" r="3"/><circle class="s1 dot" cx="700.0" cy="41.0" r="3"/><polyline class="s2 line" points="62.0,254.0 221.5,247.9 381.0,236.9 540.5,220.6 700.0,199.1"/><circle class="s2 dot" cx="62.0" cy="254.0" r="3"/><circle class="s2 dot" cx="221.5" cy="247.9" r="3"/><circle class="s2 dot" cx="381.0" cy="236.9" r="3"/><circle class="s2 dot" cx="540.5" cy="220.6" r="3"/><circle class="s2 dot" cx="700.0" cy="199.1" r="3"/><polyline class="s4 line" points="62.0,254.0 221.5,230.3 381.0,188.3 540.5,125.2 700.0,41.0"/><circle class="s4 dot" cx="62.0" cy="254.0" r="3"/><circle class="s4 dot" cx="221.5" cy="230.3" r="3"/><circle class="s4 dot" cx="381.0" cy="188.3" r="3"/><circle class="s4 dot" cx="540.5" cy="125.2" r="3"/><circle class="s4 dot" cx="700.0" cy="41.0" r="3"/><rect class="s1 swatch" x="62" y="6" width="14" height="4" rx="2"/><text class="legend" x="82" y="11">continuous metric</text><rect class="s2 swatch" x="282" y="6" width="14" height="4" rx="2"/><text class="legend" x="302" y="11">binary metric</text><rect class="s4 swatch" x="502" y="6" width="14" height="4" rx="2"/><text class="legend" x="522" y="11">theoretical rho^2</text></svg><figcaption>Variance removed by CUPED against the theoretical rho^2 ceiling, for a continuous and a binary metric.</figcaption></figure><p class="take">Observed variance reduction tracks the achieved rho^2 to within 0.003 across both metric types, so the estimator is correct. On the continuous metric CUPED removes 81% of the variance; on the binary conversion flag only 21%, because a Bernoulli outcome is mostly irreducible noise. Apply CUPED to engagement metrics first.</p><pre>  design      60,000 users, true effect +5%, 6 replications per row
+
+  CONTINUOUS metric (sessions per week) -- CUPED works as advertised
+    nominal rho   achieved rho   predicted (rho^2)   observed   SE ratio   traffic needed
+           0.0         -0.002               0.0%       0.0%      1.000            100%
+           0.3          0.299               8.9%       9.0%      0.954             91%
+           0.5          0.497              24.7%      24.8%      0.867             75%
+           0.7          0.698              48.8%      49.0%      0.714             51%
+           0.9          0.898              80.6%      81.0%      0.436             19%
+
+  BINARY metric (converted yes/no) -- same code, much less to gain
+    nominal rho   achieved rho   predicted (rho^2)   observed   SE ratio   traffic needed
+           0.0         -0.001               0.0%       0.0%      1.000            100%
+           0.3          0.152               2.3%       2.3%      0.988             98%
+           0.5          0.255               6.5%       6.5%      0.967             93%
+           0.7          0.356              12.7%      12.7%      0.934             87%
+           0.9          0.457              20.9%      20.9%      0.889             79%
+
+  predicted vs observed agree to within 0.003 everywhere -- the estimator is correct, the metric is the constraint
+
+  what the variance reduction is worth in planning
+  (baseline 8.5%, detect +3% relative, 80% power)
+
+    rho    users/arm plain    users/arm CUPED    saved
+    0.3          190,308           173,181    9%
+    0.5          190,308           142,731    25%
+    0.7          190,308            97,058    49%
+    0.9          190,308            36,159    81%</pre></section><footer>Python standard library only &middot; every figure regenerates from <code>python run.py run all --report report.html</code></footer></div></body></html>

@@ -1,0 +1,784 @@
+[
+  {
+    "scenario": "aa",
+    "title": "A/A calibration -- is the harness itself trustworthy?",
+    "n_trials": 20000,
+    "n_per_arm": 25000,
+    "baseline_rate": 0.085,
+    "alpha": 0.05,
+    "false_positive_rate": 0.04885,
+    "expected_rate": 0.05,
+    "z_score": -0.746218537201511,
+    "standard_error": 0.0015411035007422442,
+    "ks_statistic": 0.007691531625220627,
+    "ks_critical": 0.009602510088513316,
+    "p_value_histogram": [
+      977,
+      1026,
+      1012,
+      1068,
+      995,
+      1015,
+      949,
+      993,
+      960,
+      1048,
+      1005,
+      1062,
+      930,
+      1049,
+      1031,
+      996,
+      1010,
+      1005,
+      1008,
+      861
+    ],
+    "verdict": "PASS",
+    "takeaway": "20,000 A/A tests with zero true effect produced a 4.88% false positive rate against a nominal 5%. p-values are uniform, so the harness is calibrated and every downstream result can be believed.",
+    "console": "  trials                20,000 A/A experiments @ 25,000 users/arm\n  true effect           0.00% (identical arms by construction)\n  false positive rate   4.88%  (nominal 5%, z = -0.75)\n  p-value uniformity    KS = 0.0077  (critical 0.0096)\n\n  p-value histogram (flat == correctly calibrated)\n    0.00-0.05 |################################## 977\n    0.05-0.10 |#################################### 1026\n    0.10-0.15 |#################################### 1012\n    0.15-0.20 |###################################### 1068\n    0.20-0.25 |################################### 995\n    0.25-0.30 |#################################### 1015\n    0.30-0.35 |################################# 949\n    0.35-0.40 |################################### 993\n    0.40-0.45 |################################## 960\n    0.45-0.50 |##################################### 1048\n    0.50-0.55 |################################### 1005\n    0.55-0.60 |##################################### 1062\n    0.60-0.65 |################################# 930\n    0.65-0.70 |##################################### 1049\n    0.70-0.75 |#################################### 1031\n    0.75-0.80 |################################### 996\n    0.80-0.85 |################################### 1010\n    0.85-0.90 |################################### 1005\n    0.90-0.95 |################################### 1008\n    0.95-1.00 |############################## 861",
+    "elapsed_seconds": 0.2532634735107422
+  },
+  {
+    "scenario": "power",
+    "title": "Power validation -- analytic sample size vs. simulated reality",
+    "baseline_rate": 0.085,
+    "design_mde": 0.05,
+    "n_per_arm": 69121,
+    "n_total": 138242,
+    "alpha": 0.05,
+    "target_power": 0.8,
+    "n_trials": 6000,
+    "points": [
+      {
+        "relative_effect": 0.0,
+        "empirical_power": 0.04666666666666667,
+        "analytic_power": 0.05,
+        "gap": 0.003333333333333334
+      },
+      {
+        "relative_effect": 0.01,
+        "empirical_power": 0.08883333333333333,
+        "analytic_power": 0.087343736631595,
+        "gap": 0.00148959670173833
+      },
+      {
+        "relative_effect": 0.02,
+        "empirical_power": 0.202,
+        "analytic_power": 0.20375807586965805,
+        "gap": 0.0017580758696580379
+      },
+      {
+        "relative_effect": 0.03,
+        "empirical_power": 0.39566666666666667,
+        "analytic_power": 0.3931163879325845,
+        "gap": 0.0025502787340821453
+      },
+      {
+        "relative_effect": 0.04,
+        "empirical_power": 0.6186666666666667,
+        "analytic_power": 0.6126746693135975,
+        "gap": 0.005991997353069212
+      },
+      {
+        "relative_effect": 0.05,
+        "empirical_power": 0.8006666666666666,
+        "analytic_power": 0.8000041252019288,
+        "gap": 0.0006625414647378758
+      },
+      {
+        "relative_effect": 0.07,
+        "empirical_power": 0.9738333333333333,
+        "analytic_power": 0.974122718644103,
+        "gap": 0.00028938531076971863
+      },
+      {
+        "relative_effect": 0.1,
+        "empirical_power": 0.9998333333333334,
+        "analytic_power": 0.9998301179424733,
+        "gap": 3.2153908600118797e-06
+      }
+    ],
+    "max_gap": 0.005991997353069212,
+    "tolerance": 0.029364916731037083,
+    "mde_table": [
+      {
+        "n_per_arm": 5000,
+        "mde": 0.1915596828801175,
+        "absolute_mde": 0.016282573044809987
+      },
+      {
+        "n_per_arm": 10000,
+        "mde": 0.1338462335811027,
+        "absolute_mde": 0.01137692985439373
+      },
+      {
+        "n_per_arm": 25000,
+        "mde": 0.0837530994720147,
+        "absolute_mde": 0.00711901345512125
+      },
+      {
+        "n_per_arm": 50000,
+        "mde": 0.05890298382692116,
+        "absolute_mde": 0.0050067536252882995
+      },
+      {
+        "n_per_arm": 100000,
+        "mde": 0.041491267806233245,
+        "absolute_mde": 0.003526757763529826
+      },
+      {
+        "n_per_arm": 250000,
+        "mde": 0.026152032328119135,
+        "absolute_mde": 0.0022229227478901266
+      },
+      {
+        "n_per_arm": 500000,
+        "mde": 0.01846046881723662,
+        "absolute_mde": 0.0015691398494651128
+      }
+    ],
+    "verdict": "PASS",
+    "takeaway": "Sized for a +5% lift, the design needs 138,242 users. Simulated power tracks the analytic curve to within 0.6% everywhere, so the planning numbers are safe to quote.",
+    "console": "  design            baseline 8.50%, MDE +5%, power 80%\n  required n        69,121 per arm (138,242 total)\n  replications      6,000 per grid point\n\n  true lift    simulated power    analytic power    gap\n     +0.0%          4.7%              5.0%      0.003\n     +1.0%          8.9%              8.7%      0.001\n     +2.0%         20.2%             20.4%      0.002\n     +3.0%         39.6%             39.3%      0.003\n     +4.0%         61.9%             61.3%      0.006\n     +5.0%         80.1%             80.0%      0.001\n     +7.0%         97.4%             97.4%      0.000\n    +10.0%        100.0%            100.0%      0.000\n\n  worst gap 0.006 vs tolerance 0.029\n\n  planning table -- smallest lift visible at each traffic level\n      5,000 users/arm  ->  MDE +19.16% (1.628 pp)\n     10,000 users/arm  ->  MDE +13.38% (1.138 pp)\n     25,000 users/arm  ->  MDE +8.38% (0.712 pp)\n     50,000 users/arm  ->  MDE +5.89% (0.501 pp)\n    100,000 users/arm  ->  MDE +4.15% (0.353 pp)\n    250,000 users/arm  ->  MDE +2.62% (0.222 pp)\n    500,000 users/arm  ->  MDE +1.85% (0.157 pp)",
+    "elapsed_seconds": 0.6050372123718262
+  },
+  {
+    "scenario": "peeking",
+    "title": "Peeking -- how daily dashboard checks manufacture false positives",
+    "n_trials": 3000,
+    "n_days": 14,
+    "users_per_day_per_arm": 4000,
+    "baseline_rate": 0.085,
+    "alpha": 0.05,
+    "naive_false_positive_rate": 0.221,
+    "sequential_false_positive_rate": 0.008666666666666666,
+    "inflation_factor": 4.42,
+    "independent_looks_bound": 0.5123250208844705,
+    "fpr_by_look": [
+      0.048666666666666664,
+      0.082,
+      0.10566666666666667,
+      0.12533333333333332,
+      0.143,
+      0.15766666666666668,
+      0.171,
+      0.179,
+      0.18666666666666668,
+      0.19466666666666665,
+      0.20133333333333334,
+      0.20966666666666667,
+      0.21433333333333332,
+      0.221
+    ],
+    "median_false_stop_day_naive": 4.0,
+    "power": {
+      "true_effect": 0.05,
+      "fixed_horizon_power_at_end": 0.702,
+      "sequential_power_any_time": 0.369,
+      "median_days_to_detect_sequential": 10.0,
+      "n_trials": 1000
+    },
+    "price": {
+      "target_power": 0.8,
+      "fixed_horizon_n_per_arm": 69121,
+      "sequential_n_per_arm": 120000,
+      "sequential_days": 30,
+      "traffic_multiplier": 1.7360859941262423,
+      "cumulative_power_by_day": [
+        0.0,
+        0.0006666666666666666,
+        0.016666666666666666,
+        0.03333333333333333,
+        0.05266666666666667,
+        0.07933333333333334,
+        0.10466666666666667,
+        0.13733333333333334,
+        0.18066666666666667,
+        0.22,
+        0.256,
+        0.2926666666666667,
+        0.3273333333333333,
+        0.36933333333333335,
+        0.41133333333333333,
+        0.452,
+        0.49,
+        0.522,
+        0.5486666666666666,
+        0.5766666666666667,
+        0.61,
+        0.632,
+        0.652,
+        0.6786666666666666,
+        0.702,
+        0.7306666666666667,
+        0.7486666666666667,
+        0.766,
+        0.786,
+        0.802,
+        0.8133333333333334,
+        0.8306666666666667,
+        0.8453333333333334,
+        0.8606666666666667,
+        0.8733333333333333,
+        0.8866666666666667,
+        0.8966666666666666,
+        0.9053333333333333,
+        0.9113333333333333,
+        0.9193333333333333,
+        0.928,
+        0.9326666666666666,
+        0.9406666666666667,
+        0.9466666666666667,
+        0.95,
+        0.954,
+        0.9573333333333334,
+        0.964,
+        0.9666666666666667,
+        0.972,
+        0.976,
+        0.978,
+        0.982,
+        0.982,
+        0.984,
+        0.9853333333333333,
+        0.9866666666666667,
+        0.9873333333333333,
+        0.99,
+        0.99,
+        0.9913333333333333,
+        0.9913333333333333,
+        0.9913333333333333,
+        0.992,
+        0.992,
+        0.9926666666666667,
+        0.9946666666666667,
+        0.9953333333333333,
+        0.996,
+        0.996
+      ],
+      "max_days": 70,
+      "n_trials": 1500
+    },
+    "tau_study": [
+      {
+        "tau_multiple_of_truth": 0.25,
+        "tau": 0.0010625,
+        "false_positive_rate": 0.0,
+        "power": 0.01375
+      },
+      {
+        "tau_multiple_of_truth": 0.5,
+        "tau": 0.002125,
+        "false_positive_rate": 0.0025,
+        "power": 0.23875
+      },
+      {
+        "tau_multiple_of_truth": 1.0,
+        "tau": 0.00425,
+        "false_positive_rate": 0.00875,
+        "power": 0.37875
+      },
+      {
+        "tau_multiple_of_truth": 2.0,
+        "tau": 0.0085,
+        "false_positive_rate": 0.0175,
+        "power": 0.39125
+      },
+      {
+        "tau_multiple_of_truth": 4.0,
+        "tau": 0.017,
+        "false_positive_rate": 0.0075,
+        "power": 0.3375
+      }
+    ],
+    "tau": 0.00425,
+    "verdict": "PASS",
+    "takeaway": "Checking a fixed-horizon test every day for 14 days turns a 5% false positive rate into 22.1% -- 4.4x inflation, on experiments with zero true effect. The mSPRT held at 0.9% under the exact same stopping rule.",
+    "console": "  setup                 3,000 A/A experiments, 4,000 users/arm/day, checked daily for 14 days\n  true effect           0.00%  (every rejection below is a false positive)\n\n  fixed-horizon z-test, peeked daily    22.1%   <-- 4.4x the nominal 5%\n  mSPRT always-valid p-value             0.9%   <-- controlled\n\n  false positive rate as looks accumulate\n    day  1 |## 4.9%\n    day  2 |#### 8.2%\n    day  3 |###### 10.6%\n    day  4 |####### 12.5%\n    day  5 |######## 14.3%\n    day  6 |######### 15.8%\n    day  7 |########## 17.1%\n    day  8 |########## 17.9%\n    day  9 |########### 18.7%\n    day 10 |########### 19.5%\n    day 11 |############ 20.1%\n    day 12 |############ 21.0%\n    day 13 |############ 21.4%\n    day 14 |############# 22.1%\n\n  cost of the fix -- against a real +5% lift, same 14-day window:\n    fixed-horizon power (correct use, ONE look at the end)  70.2%\n    mSPRT power (stop ANY time)                             36.9%\n\n  priced properly -- traffic needed to reach 80% power:\n    fixed horizon      69,121 users/arm\n    mSPRT             120,000 users/arm (30 days)\n    the price       1.74x traffic to buy unlimited peeking\n\n  tau sensitivity -- the prior trades POWER, never VALIDITY:\n\n    tau / true effect    false positive rate    power\n             0.25x               0.0%      1.4%\n             0.50x               0.2%     23.9%\n             1.00x               0.9%     37.9%\n             2.00x               1.8%     39.1%\n             4.00x               0.8%     33.8%\n\n    Every row controls false positives. Only the power column moves.",
+    "elapsed_seconds": 5.802095890045166
+  },
+  {
+    "scenario": "srm",
+    "title": "Sample Ratio Mismatch -- the gate that runs before any result is read",
+    "n_users": 400000,
+    "n_trials": 400,
+    "alpha_srm": 0.001,
+    "detection": [
+      {
+        "bias": 0.0,
+        "true_split": 0.5,
+        "detection_rate": 0.0,
+        "mean_observed_share": 0.50007595625
+      },
+      {
+        "bias": 0.001,
+        "true_split": 0.501,
+        "detection_rate": 0.025,
+        "mean_observed_share": 0.50104200625
+      },
+      {
+        "bias": 0.0025,
+        "true_split": 0.5025,
+        "detection_rate": 0.4525,
+        "mean_observed_share": 0.50251844375
+      },
+      {
+        "bias": 0.005,
+        "true_split": 0.505,
+        "detection_rate": 0.9975,
+        "mean_observed_share": 0.5049958625
+      },
+      {
+        "bias": 0.01,
+        "true_split": 0.51,
+        "detection_rate": 1.0,
+        "mean_observed_share": 0.50999760625
+      },
+      {
+        "bias": 0.02,
+        "true_split": 0.52,
+        "detection_rate": 1.0,
+        "mean_observed_share": 0.51992755
+      }
+    ],
+    "corruption": {
+      "true_lift": 0.0,
+      "measured_lift": 0.020016387860028004,
+      "measured_p_value": 8.939486703269826e-08,
+      "measured_significant": true,
+      "srm_p_value": 4.9526752515082436e-79,
+      "srm_failed": true,
+      "observed_ratio": [
+        0.5047277851636277,
+        0.4952722148363723
+      ],
+      "n_control": 2000000,
+      "n_treatment_assigned": 2000000,
+      "n_treatment_observed": 1962532,
+      "dropped": 37468
+    },
+    "false_alarm_rate": 0.0,
+    "verdict": "PASS",
+    "takeaway": "At 400,000 users the chi-square gate catches a 1pp assignment skew 100% of the time while false-alarming on clean splits only 0.0% of the time. When the dropout is correlated with the outcome it fabricates a +2.0% lift out of a true effect of +0.0%.",
+    "console": "  detector sensitivity at 400,000 users, alpha = 0.001\n\n    true split      caught\n    clean 50.00%  | 0.0%\n         50.100%  | 2.5%\n         50.250%  |############# 45.2%\n         50.500%  |############################# 99.8%\n         51.000%  |############################## 100.0%\n         52.000%  |############################## 100.0%\n\n  what SRM does to a result -- 2% of low-propensity treatment users never log:\n    assigned to treatment    2,000,000\n    observed in treatment    1,962,532  (37,468 silently missing)\n    observed split           50.473% / 49.527%\n    TRUE lift                +0.00%\n    MEASURED lift            +2.00%  (p = 8.94e-08, SIGNIFICANT)\n    SRM gate                 p = 4.95e-79  -> BLOCKED, do not analyze\n\n    The lift is entirely fabricated. Without the gate it ships.",
+    "elapsed_seconds": 0.06894826889038086
+  },
+  {
+    "scenario": "heterogeneity",
+    "title": "Simpson's paradox -- treatment wins every segment and loses the average",
+    "n_per_arm": 300000,
+    "true_relative_effect": 0.1,
+    "control_mobile_mix": 0.4,
+    "treatment_mobile_mix": 0.7,
+    "pooled_relative_lift": -0.24888262532715927,
+    "pooled_p_value": 5.543465780669396e-208,
+    "pooled_significant": true,
+    "stratified_relative_lift": 0.09225235833962646,
+    "per_segment": {
+      "mobile": {
+        "share": 0.55,
+        "rate_control": 0.030675,
+        "rate_treatment": 0.03415714285714286,
+        "relative_lift": 0.11351728955640936,
+        "p_value": 6.841571057978566e-08,
+        "significant": true,
+        "n_control": 120000,
+        "n_treatment": 210000
+      },
+      "desktop": {
+        "share": 0.45,
+        "rate_control": 0.11752222222222222,
+        "rate_treatment": 0.12756666666666666,
+        "relative_lift": 0.08546846932022308,
+        "p_value": 4.429805342883475e-14,
+        "significant": true,
+        "n_control": 180000,
+        "n_treatment": 90000
+      }
+    },
+    "paradox_reproduced": true,
+    "verdict": "PASS",
+    "takeaway": "Treatment lifts every segment by +10%, yet the pooled number reads -24.9% because the arms carry different device mixes. Post-stratifying on the population share recovers +9.2%. Never ship on a pooled average without checking the mix.",
+    "console": "  design              300,000 users/arm, true effect +10% in EVERY segment\n  the bug             control is 40% mobile, treatment is 70% mobile\n\n    segment     control    treatment    lift        verdict\n    mobile      3.067%     3.416%   +11.35%    WIN (p=6.8e-08)\n    desktop    11.752%    12.757%    +8.55%    WIN (p=4.4e-14)\n\n    POOLED     -24.89%  (p = 5.54e-208)   <-- treatment 'loses'\n    STRATIFIED  +9.23%  <-- recovers the truth (+10%)\n\n    Every segment improved. The pooled average fell. Both are arithmetic.",
+    "elapsed_seconds": 0.0007996559143066406
+  },
+  {
+    "scenario": "novelty",
+    "title": "Novelty decay -- the early read measures a real effect that will not last",
+    "baseline_rate": 0.085,
+    "initial_effect": 0.12,
+    "half_life_days": 4.0,
+    "n_days": 28,
+    "users_per_day_per_arm": 80000,
+    "daily": [
+      {
+        "day": 1,
+        "true_effect_today": 0.12,
+        "daily_measured_lift": 0.14136125654450266,
+        "cumulative_measured_lift": 0.14136125654450266,
+        "cumulative_p_value": 1.2599933430505015e-16,
+        "cumulative_significant": true
+      },
+      {
+        "day": 2,
+        "true_effect_today": 0.10090756983044574,
+        "daily_measured_lift": 0.10970279720279726,
+        "cumulative_measured_lift": 0.12532290205919253,
+        "cumulative_p_value": 9.67073889215273e-26,
+        "cumulative_significant": true
+      },
+      {
+        "day": 3,
+        "true_effect_today": 0.08485281374238571,
+        "daily_measured_lift": 0.07302380252718185,
+        "cumulative_measured_lift": 0.10783591255219854,
+        "cumulative_p_value": 1.1879715042193703e-28,
+        "cumulative_significant": true
+      },
+      {
+        "day": 4,
+        "true_effect_today": 0.07135242690016326,
+        "daily_measured_lift": 0.08713136729222519,
+        "cumulative_measured_lift": 0.10270050611400496,
+        "cumulative_p_value": 2.8166835331141682e-34,
+        "cumulative_significant": true
+      },
+      {
+        "day": 5,
+        "true_effect_today": 0.06,
+        "daily_measured_lift": 0.0679525222551928,
+        "cumulative_measured_lift": 0.09577331479783495,
+        "cumulative_p_value": 3.468217255407505e-37,
+        "cumulative_significant": true
+      },
+      {
+        "day": 6,
+        "true_effect_today": 0.05045378491522287,
+        "daily_measured_lift": 0.05289598108747053,
+        "cumulative_measured_lift": 0.08862163294477159,
+        "cumulative_p_value": 2.798208244800527e-38,
+        "cumulative_significant": true
+      },
+      {
+        "day": 7,
+        "true_effect_today": 0.042426406871192854,
+        "daily_measured_lift": 0.04980340760157275,
+        "cumulative_measured_lift": 0.08300311946716134,
+        "cumulative_p_value": 2.56446963847555e-39,
+        "cumulative_significant": true
+      },
+      {
+        "day": 8,
+        "true_effect_today": 0.03567621345008163,
+        "daily_measured_lift": 0.019325777390293487,
+        "cumulative_measured_lift": 0.07493649449618964,
+        "cumulative_p_value": 6.1171397241815385e-37,
+        "cumulative_significant": true
+      },
+      {
+        "day": 9,
+        "true_effect_today": 0.03,
+        "daily_measured_lift": 0.029815843320666433,
+        "cumulative_measured_lift": 0.06988948469788123,
+        "cumulative_p_value": 2.715995908934222e-36,
+        "cumulative_significant": true
+      },
+      {
+        "day": 10,
+        "true_effect_today": 0.025226892457611436,
+        "daily_measured_lift": 0.03584960652870876,
+        "cumulative_measured_lift": 0.06645597530501245,
+        "cumulative_p_value": 1.5318608590215305e-36,
+        "cumulative_significant": true
+      },
+      {
+        "day": 11,
+        "true_effect_today": 0.021213203435596427,
+        "daily_measured_lift": 0.02113086563684051,
+        "cumulative_measured_lift": 0.062303049724937214,
+        "cumulative_p_value": 1.7809311139409182e-35,
+        "cumulative_significant": true
+      },
+      {
+        "day": 12,
+        "true_effect_today": 0.017838106725040815,
+        "daily_measured_lift": 0.010953702351394862,
+        "cumulative_measured_lift": 0.05800168830056649,
+        "cumulative_p_value": 1.0356037803090476e-33,
+        "cumulative_significant": true
+      },
+      {
+        "day": 13,
+        "true_effect_today": 0.015,
+        "daily_measured_lift": 0.02863534675615212,
+        "cumulative_measured_lift": 0.05577540590656235,
+        "cumulative_p_value": 9.323907521418422e-34,
+        "cumulative_significant": true
+      },
+      {
+        "day": 14,
+        "true_effect_today": 0.012613446228805718,
+        "daily_measured_lift": 0.015720005932077626,
+        "cumulative_measured_lift": 0.05293790118398523,
+        "cumulative_p_value": 8.126501017912823e-33,
+        "cumulative_significant": true
+      },
+      {
+        "day": 15,
+        "true_effect_today": 0.010606601717798213,
+        "daily_measured_lift": 0.024636390620362214,
+        "cumulative_measured_lift": 0.05106696100073577,
+        "cumulative_p_value": 9.931331903413313e-33,
+        "cumulative_significant": true
+      },
+      {
+        "day": 16,
+        "true_effect_today": 0.008919053362520407,
+        "daily_measured_lift": 0.0002930402930402608,
+        "cumulative_measured_lift": 0.047880459770114916,
+        "cumulative_p_value": 7.609133851055646e-31,
+        "cumulative_significant": true
+      },
+      {
+        "day": 17,
+        "true_effect_today": 0.0075,
+        "daily_measured_lift": -0.023094688221709028,
+        "cumulative_measured_lift": 0.04362973080447454,
+        "cumulative_p_value": 1.7292792410542885e-27,
+        "cumulative_significant": true
+      },
+      {
+        "day": 18,
+        "true_effect_today": 0.006306723114402859,
+        "daily_measured_lift": -0.02027027027027016,
+        "cumulative_measured_lift": 0.04007804973629644,
+        "cumulative_p_value": 9.01613030814924e-25,
+        "cumulative_significant": true
+      },
+      {
+        "day": 19,
+        "true_effect_today": 0.005303300858899107,
+        "daily_measured_lift": 0.01981684431767,
+        "cumulative_measured_lift": 0.03903303986929629,
+        "cumulative_p_value": 8.792115958520277e-25,
+        "cumulative_significant": true
+      },
+      {
+        "day": 20,
+        "true_effect_today": 0.004459526681260204,
+        "daily_measured_lift": -0.023657474600870802,
+        "cumulative_measured_lift": 0.03585789160301964,
+        "cumulative_p_value": 3.0650040008705916e-22,
+        "cumulative_significant": true
+      },
+      {
+        "day": 21,
+        "true_effect_today": 0.00375,
+        "daily_measured_lift": 0.023333333333333286,
+        "cumulative_measured_lift": 0.03527836395886057,
+        "cumulative_p_value": 1.5010744414533547e-22,
+        "cumulative_significant": true
+      },
+      {
+        "day": 22,
+        "true_effect_today": 0.0031533615572014295,
+        "daily_measured_lift": 0.014190687361419147,
+        "cumulative_measured_lift": 0.03432350303208781,
+        "cumulative_p_value": 2.218550212271096e-22,
+        "cumulative_significant": true
+      },
+      {
+        "day": 23,
+        "true_effect_today": 0.0026516504294495534,
+        "daily_measured_lift": 0.019300361881785334,
+        "cumulative_measured_lift": 0.033684966097132715,
+        "cumulative_p_value": 1.658462063396547e-22,
+        "cumulative_significant": true
+      },
+      {
+        "day": 24,
+        "true_effect_today": 0.002229763340630102,
+        "daily_measured_lift": -0.00811711842295976,
+        "cumulative_measured_lift": 0.03191495890949049,
+        "cumulative_p_value": 3.2555020351922108e-21,
+        "cumulative_significant": true
+      },
+      {
+        "day": 25,
+        "true_effect_today": 0.001875,
+        "daily_measured_lift": -0.013111373011196093,
+        "cumulative_measured_lift": 0.030114128481448826,
+        "cumulative_p_value": 8.367825702278486e-20,
+        "cumulative_significant": true
+      },
+      {
+        "day": 26,
+        "true_effect_today": 0.0015766807786007147,
+        "daily_measured_lift": -0.013722627737226385,
+        "cumulative_measured_lift": 0.0284134993855164,
+        "cumulative_p_value": 1.800730952470254e-18,
+        "cumulative_significant": true
+      },
+      {
+        "day": 27,
+        "true_effect_today": 0.0013258252147247767,
+        "daily_measured_lift": 0.003390330188679199,
+        "cumulative_measured_lift": 0.027487660549207902,
+        "cumulative_p_value": 5.306366450371075e-18,
+        "cumulative_significant": true
+      },
+      {
+        "day": 28,
+        "true_effect_today": 0.001114881670315051,
+        "daily_measured_lift": 0.0019154265507589198,
+        "cumulative_measured_lift": 0.026574875619274022,
+        "cumulative_p_value": 1.6731862302966825e-17,
+        "cumulative_significant": true
+      }
+    ],
+    "week1_lift": 0.07981734391111298,
+    "week1_true": 0.07571328603705862,
+    "final_week_lift": 0.00018776208457645986,
+    "final_week_ci": [
+      -0.011919157024351026,
+      0.012294681193503946
+    ],
+    "final_week_significant": false,
+    "cumulative_final_lift": 0.026574875619274022,
+    "true_effect_final_week": 0.0019895947129888038,
+    "coverage": {
+      "n_replications": 400,
+      "true_window_effect": 0.0019895947129888038,
+      "mean_estimate": 0.0021988902444773596,
+      "bias": 0.00020929553148855582,
+      "coverage_rate": 0.9475
+    },
+    "verdict": "PASS",
+    "takeaway": "A +12% launch-day lift with a 4-day half-life reads +8.0% in week 1 and +2.7% cumulatively, but the durable effect measured in the final week is +0.0% with a CI that covers zero. Ship on the cumulative number and the win evaporates in production a month later, when nobody connects the two events.",
+    "console": "  design            +12% launch-day effect, 4-day half-life, 28 days\n\n    day   true    daily measured   cumulative (dashboard)\n      1  +12.00%    +14.14%        +14.14% *\n      2  +10.09%    +10.97%        +12.53% *\n      4  +7.14%     +8.71%        +10.27% *\n      6  +5.05%     +5.29%         +8.86% *\n      8  +3.57%     +1.93%         +7.49% *\n     10  +2.52%     +3.58%         +6.65% *\n     12  +1.78%     +1.10%         +5.80% *\n     14  +1.26%     +1.57%         +5.29% *\n     16  +0.89%     +0.03%         +4.79% *\n     18  +0.63%     -2.03%         +4.01% *\n     20  +0.45%     -2.37%         +3.59% *\n     22  +0.32%     +1.42%         +3.43% *\n     24  +0.22%     -0.81%         +3.19% *\n     26  +0.16%     -1.37%         +2.84% *\n     28  +0.11%     +0.19%         +2.66% *\n\n    three readings of the SAME experiment:\n      week 1 only            +7.98%   (true: +7.57%)  <- the excited Slack message\n      cumulative day 1-28    +2.66%                  <- what the dashboard shows\n      final week only        +0.02%   (true: +0.20%)  <- the DURABLE effect\n                             95% CI [-1.19%, +1.23%]\n\n    is 'read the last week' actually an unbiased rule? (400 replications)\n      mean estimate    +0.220%  vs truth +0.199%  (bias +0.021%)\n      CI coverage      94.8%  (nominal 95%)\n\n    Read the last week, not the average. Require the daily series to be flat.",
+    "elapsed_seconds": 0.043201446533203125
+  },
+  {
+    "scenario": "cuped",
+    "title": "CUPED -- same data, same answer, materially less noise",
+    "n_users": 60000,
+    "true_effect": 0.05,
+    "n_repeats": 6,
+    "binary_rows": [
+      {
+        "nominal_rho": 0.0,
+        "achieved_rho": -0.000898120537217102,
+        "predicted_reduction": 1.8538286122691272e-05,
+        "observed_reduction": 1.889406390812957e-05,
+        "se_ratio": 0.999990489472283,
+        "equivalent_traffic_fraction": 0.9999811059360919
+      },
+      {
+        "nominal_rho": 0.3,
+        "achieved_rho": 0.15192775584970275,
+        "predicted_reduction": 0.023099447902541825,
+        "observed_reduction": 0.023095283901216308,
+        "se_ratio": 0.9883851413331651,
+        "equivalent_traffic_fraction": 0.9769047160987837
+      },
+      {
+        "nominal_rho": 0.5,
+        "achieved_rho": 0.2553200196353007,
+        "predicted_reduction": 0.0652009516679831,
+        "observed_reduction": 0.06520629128917549,
+        "se_ratio": 0.9668473123562699,
+        "equivalent_traffic_fraction": 0.9347937087108245
+      },
+      {
+        "nominal_rho": 0.7,
+        "achieved_rho": 0.3562797454892108,
+        "predicted_reduction": 0.12694325765308065,
+        "observed_reduction": 0.1269517743957325,
+        "se_ratio": 0.9343699341207397,
+        "equivalent_traffic_fraction": 0.8730482256042675
+      },
+      {
+        "nominal_rho": 0.9,
+        "achieved_rho": 0.45713711703830356,
+        "predicted_reduction": 0.2089897359551188,
+        "observed_reduction": 0.20898353819880833,
+        "se_ratio": 0.8893864345841029,
+        "equivalent_traffic_fraction": 0.7910164618011917
+      }
+    ],
+    "continuous_rows": [
+      {
+        "nominal_rho": 0.0,
+        "achieved_rho": -0.002176656470849685,
+        "predicted_reduction": 1.4159218377762697e-05,
+        "observed_reduction": 1.404929955685826e-05,
+        "se_ratio": 0.9999930016994791,
+        "equivalent_traffic_fraction": 0.9999859507004432
+      },
+      {
+        "nominal_rho": 0.3,
+        "achieved_rho": 0.2988714811453352,
+        "predicted_reduction": 0.08933644881316644,
+        "observed_reduction": 0.08971079399824816,
+        "se_ratio": 0.9540898582659434,
+        "equivalent_traffic_fraction": 0.9102892060017518
+      },
+      {
+        "nominal_rho": 0.5,
+        "achieved_rho": 0.4971277016540976,
+        "predicted_reduction": 0.24713965621030695,
+        "observed_reduction": 0.24813684232485303,
+        "se_ratio": 0.8671025277177019,
+        "equivalent_traffic_fraction": 0.751863157675147
+      },
+      {
+        "nominal_rho": 0.7,
+        "achieved_rho": 0.6982832124473637,
+        "predicted_reduction": 0.4876024583115895,
+        "observed_reduction": 0.4897851023590966,
+        "se_ratio": 0.7142922231306272,
+        "equivalent_traffic_fraction": 0.5102148976409033
+      },
+      {
+        "nominal_rho": 0.9,
+        "achieved_rho": 0.8980450973077957,
+        "predicted_reduction": 0.8064853048591857,
+        "observed_reduction": 0.8099637949512607,
+        "se_ratio": 0.4359277955847524,
+        "equivalent_traffic_fraction": 0.1900362050487393
+      }
+    ],
+    "worst_theory_gap": 0.003478490092075015,
+    "planning": [
+      {
+        "correlation": 0.3,
+        "n_plain": 190308,
+        "n_cuped": 173181,
+        "fraction_saved": 0.08999621665931012
+      },
+      {
+        "correlation": 0.5,
+        "n_plain": 190308,
+        "n_cuped": 142731,
+        "fraction_saved": 0.25
+      },
+      {
+        "correlation": 0.7,
+        "n_plain": 190308,
+        "n_cuped": 97058,
+        "fraction_saved": 0.4899951657313407
+      },
+      {
+        "correlation": 0.9,
+        "n_plain": 190308,
+        "n_cuped": 36159,
+        "fraction_saved": 0.8099974777728735
+      }
+    ],
+    "verdict": "PASS",
+    "takeaway": "Observed variance reduction tracks the achieved rho^2 to within 0.003 across both metric types, so the estimator is correct. On the continuous metric CUPED removes 81% of the variance; on the binary conversion flag only 21%, because a Bernoulli outcome is mostly irreducible noise. Apply CUPED to engagement metrics first.",
+    "console": "  design      60,000 users, true effect +5%, 6 replications per row\n\n  CONTINUOUS metric (sessions per week) -- CUPED works as advertised\n    nominal rho   achieved rho   predicted (rho^2)   observed   SE ratio   traffic needed\n           0.0         -0.002               0.0%       0.0%      1.000            100%\n           0.3          0.299               8.9%       9.0%      0.954             91%\n           0.5          0.497              24.7%      24.8%      0.867             75%\n           0.7          0.698              48.8%      49.0%      0.714             51%\n           0.9          0.898              80.6%      81.0%      0.436             19%\n\n  BINARY metric (converted yes/no) -- same code, much less to gain\n    nominal rho   achieved rho   predicted (rho^2)   observed   SE ratio   traffic needed\n           0.0         -0.001               0.0%       0.0%      1.000            100%\n           0.3          0.152               2.3%       2.3%      0.988             98%\n           0.5          0.255               6.5%       6.5%      0.967             93%\n           0.7          0.356              12.7%      12.7%      0.934             87%\n           0.9          0.457              20.9%      20.9%      0.889             79%\n\n  predicted vs observed agree to within 0.003 everywhere -- the estimator is correct, the metric is the constraint\n\n  what the variance reduction is worth in planning\n  (baseline 8.5%, detect +3% relative, 80% power)\n\n    rho    users/arm plain    users/arm CUPED    saved\n    0.3          190,308           173,181    9%\n    0.5          190,308           142,731    25%\n    0.7          190,308            97,058    49%\n    0.9          190,308            36,159    81%",
+    "elapsed_seconds": 30.6620135307312
+  }
+]
