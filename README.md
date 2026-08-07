@@ -6,7 +6,7 @@ real analysis methods against them, and reports whether each method recovered
 the truth.
 
 The point is inversion. On a live experiment the true lift is unknown forever,
-so a broken analysis is invisible — it just returns a confident number that
+so a broken analysis is invisible. In fact, it just returns a confident number that
 nobody can check. Here the truth is a parameter, so a broken analysis is a
 failing test.
 
